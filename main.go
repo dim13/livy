@@ -28,9 +28,9 @@ func main() {
 			return
 		case nil:
 			line.AppendHistory(cmd)
-			fmt.Println(eval(cmd))
+			fmt.Print(eval(cmd))
 		default:
-			fmt.Println(err)
+			fmt.Print(err)
 		}
 	}
 }
