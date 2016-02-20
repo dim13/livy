@@ -9,9 +9,14 @@ import (
 )
 
 func eval(cmd string) string {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Sprintf("Panic %v", r)
+		}
+	}()
 	result, err := mobile.Eval(cmd)
 	if err != nil {
-		return "Error" + err.Error()
+		return fmt.Sprintf("Error %v", err)
 	}
 	return result
 }
