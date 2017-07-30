@@ -1,0 +1,172 @@
+# Copyright 2014 The Go Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style
+# license that can be found in the LICENSE file.
+
+# User-defined functions.
+
+op i x = iota x
+i 5
+	1 2 3 4 5
+
+op avg x = (+/x)/rho x
+avg iota 11
+	6
+
+op n largest x = n take x[down x]
+3 largest 7 1 3 24 1 5 12 5 51
+	51 24 12
+
+# Args are not globals
+x = 100
+op i x = iota x
+i 3; x
+	1 2 3 100
+
+# Local non-args are globals
+x = 100
+op double u = x = u; x*2
+double 3; x
+	6 3
+
+# Declare unary before use
+op foo x
+op bar x = foo x
+op foo x = -x
+bar 3
+		-3
+
+# Declare binary before use
+op x foo y
+op x bar y = -x foo y
+op x foo y = x + y
+3 bar 4
+		-7
+
+# Multiline function definition
+op a x b =
+ y = a*b
+ y = y*y
+ y
+ 
+3 x 4
+	144
+
+# Program printing
+
+# Simple.
+op a x b = a + b
+)op x
+	op a x b = a + b
+
+# Character escapes and other formatting details.
+op x a = 
+ 'abc\u0001\U0010FFFF\\\'\a\b\f\n\r\t\v\n'
+ 'a'
+ 1.5
+ 1.5 'a'
+ 'a' 'b' 'c'
+ 
+)op x
+	op x a =
+		'abc\u0001\U0010ffff\\\'\a\b\f\n\r\t\v\n'
+		'a'
+		3/2
+		3/2 'a'
+		'abc'
+
+# Parentheses only when required.
+op x a = (3+2)*(3+2)
+)op x
+	op x a = (3 + 2) * 3 + 2
+
+op x a = abs (3+2)
+)op x
+	op x a = abs 3 + 2
+
+op x a = 3 + abs -2
+)op x
+	op x a = 3 + abs -2
+
+op x a = (sqrt 4)*a
+)op x
+	op x a = (sqrt 4) * a
+
+op x a = a*(sqrt 4)*(sqrt 4)
+)op x
+	op x a = a * (sqrt 4) * sqrt 4
+
+# Parenthesize compound elements of vectors
+op a x = 1 (sqrt x) 2
+)op a
+	op a x = 1 (sqrt x) 2
+
+# Preserve parens on LHS.
+op f x = (iota x)[1]
+)op f
+	op f x = (iota x)[1]
+
+# We can define a function with the same name as a zero variable.
+x = 0
+op x n = n
+x 3
+	3
+
+# We can define a function with the same name as a builtin.
+op sqrt x = x
+sqrt 4
+	4
+
+# It will be restored in a new context.
+sqrt 4
+	2
+
+# Reduce using a user-defined binary operator.
+op a binop b = a*b
+(binop/iota 10) == */iota 10
+	1
+
+# Inner product using a user-defined binary operator on the left.
+op a add b = a + b
+2 3 4 add.* 1 2 3
+	20
+
+# Inner product using a user-defined binary operator on the right.
+op a mul b = a * b
+2 3 4 +.mul 1 2 3
+	20
+
+# Inner product using a user-defined binary operator on both left and right.
+op a add b = a + b
+op a mul b = a * b
+2 3 4 add.mul 1 2 3
+2 3 4 mul.add 1 2 3
+	20
+	105
+
+# Outer product using user-defined binary operator.
+op a mul b = a * b
+2 3 4 o.mul 10 11
+	20 22
+	30 33
+	40 44
+
+# Builtin names are fine as parameter names.
+op sin x cos = (sin+cos) cos 7
+sin pi/2
+3 x 2
+	1
+	5 2 7
+
+# Sum the digits (only) in the rhs.
+op sumdigits x = t = text x; +/ (code (t in '0123456789') sel t) - code '0'
+sumdigits 99
+sumdigits iota 10
+sumdigits '23 skidoo'
+	18
+	46
+	5
+
+# Primes less <= N
+op primes N = (not T in T o.* T) sel T = 1 drop iota N
+primes 100
+	2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97
