@@ -1,2 +1,0 @@
-x = iota 7
-op avg n = (+/n)/rho n
