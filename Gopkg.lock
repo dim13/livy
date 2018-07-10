@@ -11,7 +11,7 @@
   branch = "master"
   name = "robpike.io/ivy"
   packages = ["config","exec","mobile","parse","run","scan","value"]
-  revision = "5bded9c912dced5a0e13acaea6169c77608ac22e"
+  revision = "3dd8a2d16657ecd795e7c661154e46ef19e439a6"
 
 [solve-meta]
   analyzer-name = "dep"
