@@ -2,34 +2,28 @@ package main
 
 import (
 	"fmt"
-	"io"
-	"log"
 
-	"gopkg.in/readline.v1"
+	"github.com/peterh/liner"
 	"robpike.io/ivy/mobile"
 )
 
-func main() {
-	rl, err := readline.New("      ")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer rl.Close()
+const prompt = "      "
 
+func main() {
+	l := liner.NewLiner()
+	defer l.Close()
 	for {
-		line, err := rl.Readline()
-		switch err {
-		case io.EOF, readline.ErrInterrupt:
-			return
-		case nil:
-			result, err := mobile.Eval(line)
-			if err != nil {
-				fmt.Println("Error", err)
-				continue
-			}
-			fmt.Println(result)
-		default:
-			log.Println(err)
+		line, err := l.Prompt(prompt)
+		if err != nil {
+			fmt.Println(err)
+			break
 		}
+		l.AppendHistory(line)
+		result, err := mobile.Eval(line)
+		if err != nil {
+			fmt.Println(err)
+			continue
+		}
+		fmt.Println(result)
 	}
 }

@@ -1,5 +1,7 @@
-# gopkg.in/readline.v1 v1.0.0-20160726135117-62c6fe619375
-gopkg.in/readline.v1
+# github.com/mattn/go-runewidth v0.0.3
+github.com/mattn/go-runewidth
+# github.com/peterh/liner v1.1.0
+github.com/peterh/liner
 # robpike.io/ivy v0.0.0-20180326033303-3dd8a2d16657
 robpike.io/ivy/mobile
 robpike.io/ivy/config
