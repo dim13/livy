@@ -18,6 +18,9 @@ func main() {
 			fmt.Println(err)
 			break
 		}
+		if line == ")off" {
+			break
+		}
 		l.AppendHistory(line)
 		result, err := mobile.Eval(line)
 		if err != nil {
