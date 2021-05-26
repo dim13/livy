@@ -1,9 +1,9 @@
 module dim13.org/livy
 
-go 1.13
+go 1.16
 
 require (
-	github.com/mattn/go-runewidth v0.0.9 // indirect
-	github.com/peterh/liner v1.2.0
-	robpike.io/ivy v0.0.0-20200329095838-e5a40e4ecd3b
+	golang.org/x/sys v0.0.0-20210525143221-35b2ab0089ea // indirect
+	golang.org/x/term v0.0.0-20210503060354-a79de5458b56
+	robpike.io/ivy v0.1.0
 )

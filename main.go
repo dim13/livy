@@ -2,31 +2,33 @@ package main
 
 import (
 	"fmt"
+	"os"
 
-	"github.com/peterh/liner"
+	"golang.org/x/term"
 	"robpike.io/ivy/mobile"
 )
 
-const prompt = "      "
-
 func main() {
-	l := liner.NewLiner()
-	defer l.Close()
+	oldState, err := term.MakeRaw(int(os.Stdin.Fd()))
+	if err != nil {
+		panic(err)
+	}
+	defer term.Restore(int(os.Stdin.Fd()), oldState)
+	t := term.NewTerminal(os.Stdin, "      ")
 	for {
-		line, err := l.Prompt(prompt)
+		line, err := t.ReadLine()
 		if err != nil {
-			fmt.Println(err)
+			fmt.Fprintln(t, err)
 			break
 		}
 		if line == ")off" {
 			break
 		}
-		l.AppendHistory(line)
 		result, err := mobile.Eval(line)
 		if err != nil {
-			fmt.Println(err)
+			fmt.Fprintln(t, err)
 			continue
 		}
-		fmt.Println(result)
+		fmt.Fprintln(t, result)
 	}
 }
