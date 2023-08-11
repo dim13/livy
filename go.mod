@@ -1,4 +1,4 @@
-module dim13.org/livy
+module github.com/dim13/livy
 
 go 1.19
 
