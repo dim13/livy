@@ -1,6 +1,6 @@
-golang.org/x/sys v0.17.0 h1:25cE3gD+tdBA7lp7QfhuV+rJiE9YXTcS3VG1SqssI/Y=
-golang.org/x/sys v0.17.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
-golang.org/x/term v0.17.0 h1:mkTF7LCd6WGJNL3K1Ad7kwxNfYAW6a8a8QqtMblp/4U=
-golang.org/x/term v0.17.0/go.mod h1:lLRBjIVuehSbZlaOtGMbcMncT+aqLLLmKrsjNrUguwk=
-robpike.io/ivy v0.3.4 h1:C0QJH9Il77S2MMd+8Fkc2VKv0B9lXd0yexiRzQrFUIE=
-robpike.io/ivy v0.3.4/go.mod h1:F033/ungZgZOIji0XyMA0zfFfOwi3SA8d0BsCyJp7n8=
+golang.org/x/sys v0.28.0 h1:Fksou7UEQUWlKvIdsqzJmUmCX3cZuD2+P3XyyzwMhlA=
+golang.org/x/sys v0.28.0/go.mod h1:/VUhepiaJMQUp4+oa/7Zr1D23ma6VTLIYjOOTFZPUcA=
+golang.org/x/term v0.27.0 h1:WP60Sv1nlK1T6SupCHbXzSaN0b9wUmsPoRS9b61A23Q=
+golang.org/x/term v0.27.0/go.mod h1:iMsnZpn0cago0GOrHO2+Y7u7JPn5AylBrcoWkElMTSM=
+robpike.io/ivy v0.3.6 h1:uFOI6TwuFTIlaM6QsxHMKIObtqpQ/lZMSfUWQMwBrOQ=
+robpike.io/ivy v0.3.6/go.mod h1:F033/ungZgZOIji0XyMA0zfFfOwi3SA8d0BsCyJp7n8=
