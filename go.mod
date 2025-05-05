@@ -1,10 +1,10 @@
 module github.com/dim13/livy
 
-go 1.23
+go 1.24
 
 require (
-	golang.org/x/term v0.27.0
-	robpike.io/ivy v0.3.7
+	golang.org/x/term v0.31.0
+	robpike.io/ivy v0.3.11
 )
 
-require golang.org/x/sys v0.28.0 // indirect
+require golang.org/x/sys v0.33.0 // indirect
