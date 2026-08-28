@@ -1,6 +1,6 @@
 module github.com/dim13/livy
 
-go 1.26
+go 1.27
 
 require (
 	golang.org/x/term v0.45.0
